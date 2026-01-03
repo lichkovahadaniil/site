@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЕГЭ Информатика | Даня Ли</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Neucha&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* --- НАСТРОЙКИ --- */
+            --font-main: 'Neucha', cursive;
+            --color-text-main: #FF6B6B; 
+            --color-accent: #6FE7C2;
+
+            /* --- СВЕТЛАЯ ТЕМА (ПО УМОЛЧАНИЮ) --- */
+            --bg-main: #FFFDF5;
+            --bg-card: #FFFFFF;
+            --color-border: #2D3436;
+        }
+
+        /* --- ТЕМНАЯ ТЕМА --- */
+        body.dark-theme {
+            --bg-main: #23272A;
+            --bg-card: #2C2F33;
+            --color-border: #4A5568; 
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--color-text-main);
+            font-family: var(--font-main);
+            font-size: 1.5rem;
+            overflow-x: hidden;
+            line-height: 1.4;
+        }
+
+        /* Типографика */
+        h1, h2, h3, .btn, .theme-toggle {
+            font-family: var(--font-main);
+            font-weight: bold;
+        }
+
+        h1 {
+            font-size: 4rem;
+            text-shadow: 3px 3px 0px var(--color-border);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin: 40px 0 30px 0;
+            text-shadow: 2px 2px 0px var(--color-border);
+        }
+
+        h3 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--color-accent);
+            text-shadow: 1px 1px 0px var(--color-border);
+        }
+
+        /* Кнопка темы */
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .theme-toggle {
+            background: var(--bg-card);
+            border: 3px solid var(--color-border);
+            color: var(--color-text-main);
+            padding: 8px 15px;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 3px 3px 0px var(--color-border);
+            font-size: 1.3rem;
+        }
+
+        /* Кнопки CTA */
+        .btn {
+            display: inline-block;
+            padding: 12px 35px;
+            background-color: var(--color-accent);
+            color: #2D3436;
+            text-decoration: none;
+            border-radius: 12px;
+            border: 3px solid var(--color-border);
+            font-size: 1.6rem;
+            margin-top: 20px;
+            box-shadow: 4px 4px 0px var(--color-border);
+            cursor: pointer;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 6px 6px 0px var(--color-border);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px 20px;
+            background-image: radial-gradient(circle at center, rgba(111, 231, 194, 0.08) 0%, transparent 70%);
+        }
+        .hero p { max-width: 600px; font-size: 1.7rem; margin-top: 5px; }
+
+        /* Секции */
+        section { 
+            max-width: 1000px; 
+            margin: 0 auto 50px auto; 
+            padding: 0 20px; 
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            padding: 25px;
+            border-radius: 16px;
+            border: 3px solid var(--color-border);
+            box-shadow: 5px 5px 0px var(--color-border);
+        }
+
+        /* Фото и Био */
+        .bio-container {
+            display: flex;
+            flex-direction: row; /* По умолчанию в ряд */
+            align-items: center;
+            gap: 40px;
+        }
+
+        .my-photo {
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+            border: 4px solid var(--color-border);
+            border-radius: 20px; 
+            box-shadow: 8px 8px 0px var(--color-accent); 
+            object-fit: cover;
+        }
+        
+        .bio-text { flex: 1; }
+        
+        .bio-list { list-style: none; margin-top: 15px; }
+        .bio-list li {
+            margin-bottom: 12px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        .bio-list li::before {
+            content: "•";
+            color: var(--color-accent);
+            margin-right: 12px;
+            font-size: 2rem;
+            line-height: 1;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 3px solid var(--color-border);
+            background: var(--bg-card);
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+
+        /* --- МОБИЛЬНАЯ ВЕРСИЯ (Адаптив) --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 3rem; } /* Уменьшаем заголовок */
+            h2 { font-size: 2.2rem; margin: 30px 0; }
+            
+            .hero { min-height: auto; padding: 100px 20px 50px 20px; } /* Отступ сверху под кнопку темы */
+            .hero p { font-size: 1.4rem; }
+
+            /* Фото сверху, текст снизу */
+            .bio-container { flex-direction: column; gap: 20px; }
+            .my-photo { max-width: 100%; box-shadow: 5px 5px 0px var(--color-accent); }
+            .bio-text h3 { text-align: center; }
+
+            /* Кнопки на всю ширину */
+            .btn { width: 100%; text-align: center; box-sizing: border-box; }
+            
+            /* Карточки компактнее */
+            .grid { grid-template-columns: 1fr; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="controls">
+        <button class="theme-toggle" onclick="toggleTheme()">🌗 Тема</button>
+    </div>
+
+    <header class="hero">
+        <h1>ЕГЭ ПО ИНФОРМАТИКЕ</h1>
+        <p>Подготовка без духоты. <br> Только практика и высокий балл.</p>
+        <a href="#about" class="btn">Телепортироваться к знаниям</a>
+    </header>
+
+    <section id="about">
+        <h2>ДОСЬЕ РЕПЕТИТОРА</h2>
+        <div class="card">
+            <div class="bio-container">
+                <img src="me.jpeg" alt="Даня Ли" class="my-photo">
+                
+                <div class="bio-text">
+                    <h3 style="font-size: 2.5rem; margin-top: 0; color: var(--color-text-main); text-shadow: 2px 2px 0 var(--color-border);">ДАНЯ ЛИ</h3>
+                    <ul class="bio-list">
+                        <li>Учусь в СПбГУ на "Искусственный интеллект и наука о данных".</li>
+                        <li>Сдал ЕГЭ по информатике на 90 баллов.</li>
+                        <li>Знаю все ловушки экзамена, потому что сам прошел через это.</li>
+                        <li>Объясняю Python на мемах и реальных задачах.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>ПОЧЕМУ СО МНОЙ КРУТО?</h2>
+        <div class="grid">
+            <div class="card">
+                <h3> БЕЗ ВОДЫ</h3>
+                <p>Не читаю лекции по учебнику. Мы пишем код с первого занятия и решаем задачи из реального ЕГЭ.</p>
+            </div>
+            <div class="card">
+                <h3> ВЗЛОМ МОЗГА</h3>
+                <p>Научу видеть алгоритмы там, где другие видят магию. Динамика и рекурсия станут твоими друзьями.</p>
+            </div>
+            <div class="card">
+                <h3> АКТУАЛОЧКА</h3>
+                <p>Разбираем только то, что будет на экзамене в 2025 году. Никакого старья и лишней информации.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="program">
+        <h2>ПЛАН ЗАХВАТА МИРА</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Уровень 1: Start</h3>
+                <p>Основы Python. Переменные, циклы, условия. Базовый синтаксис для старта.</p>
+            </div>
+            <div class="card">
+                <h3>Уровень 2: Excel</h3>
+                <p>Решаем сложные задачи таблицами быстро и без единой строчки кода.</p>
+            </div>
+            <div class="card">
+                <h3>Уровень 3: Boss</h3>
+                <p>Задания 26 и 27. Хардкорные алгоритмы и оптимизация для тех, кто идет на 90+.</p>
+            </div>
+        </div>
+        <div style="text-align: center;">
+            <a href="#" class="btn">Записаться на пробный</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>Даня Ли © 2025. <br> Сделано в Санкт-Петербурге.</p>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+        }
+    </script>
+</body>
+</html>
