@@ -71,7 +71,7 @@
             text-shadow: 1px 1px 0px var(--color-border);
         }
 
-        /* Кнопка темы */
+        /* Кнопка темы (НОВЫЙ ДИЗАЙН) */
         .controls {
             position: fixed;
             top: 20px;
@@ -81,32 +81,44 @@
 
         .theme-toggle {
             background: var(--bg-card);
-            border: 3px solid var(--color-border);
+            /* Толстая рамка, прямые углы */
+            border: 4px solid var(--color-border);
             color: var(--color-text-main);
             padding: 8px 15px;
-            border-radius: 12px;
+            border-radius: 0; /* Убираем скругление */
             cursor: pointer;
-            box-shadow: 3px 3px 0px var(--color-border);
+            box-shadow: 4px 4px 0px var(--color-border); /* Жесткая тень */
             font-size: 1.3rem;
         }
+        .theme-toggle:active {
+             transform: translate(2px, 2px);
+             box-shadow: 2px 2px 0px var(--color-border);
+        }
 
-        /* Кнопки CTA */
+        /* Кнопки CTA (НОВЫЙ ДИЗАЙН) */
         .btn {
             display: inline-block;
-            padding: 12px 35px;
+            padding: 15px 35px;
             background-color: var(--color-accent);
             color: #2D3436;
             text-decoration: none;
-            border-radius: 12px;
-            border: 3px solid var(--color-border);
+            /* Прямые углы */
+            border-radius: 0; 
+            /* Толстая рамка */
+            border: 4px solid var(--color-border);
             font-size: 1.6rem;
             margin-top: 20px;
-            box-shadow: 4px 4px 0px var(--color-border);
+            /* Жесткая тень для объема */
+            box-shadow: 6px 6px 0px var(--color-border);
             cursor: pointer;
+            text-transform: uppercase; /* На референсе текст капсом */
+            letter-spacing: 1px;
         }
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 6px 6px 0px var(--color-border);
+            /* Эффект нажатия: кнопка сдвигается на место тени */
+            transform: translate(4px, 4px);
+            box-shadow: 2px 2px 0px var(--color-border);
+            filter: brightness(1.05);
         }
 
         /* Hero */
@@ -135,10 +147,11 @@
             gap: 30px;
         }
 
+        /* Карточки (тоже сделал чуть строже, чтобы сочетались с кнопками) */
         .card {
             background: var(--bg-card);
             padding: 25px;
-            border-radius: 16px;
+            border-radius: 4px; /* Минимальное скругление */
             border: 3px solid var(--color-border);
             box-shadow: 5px 5px 0px var(--color-border);
         }
@@ -146,7 +159,7 @@
         /* Фото и Био */
         .bio-container {
             display: flex;
-            flex-direction: row; /* По умолчанию в ряд */
+            flex-direction: row;
             align-items: center;
             gap: 40px;
         }
@@ -156,7 +169,7 @@
             max-width: 350px;
             height: auto;
             border: 4px solid var(--color-border);
-            border-radius: 20px; 
+            border-radius: 4px; /* Минимальное скругление */
             box-shadow: 8px 8px 0px var(--color-accent); 
             object-fit: cover;
         }
@@ -187,23 +200,20 @@
             margin-top: 20px;
         }
 
-        /* --- МОБИЛЬНАЯ ВЕРСИЯ (Адаптив) --- */
+        /* --- МОБИЛЬНАЯ ВЕРСИЯ --- */
         @media (max-width: 768px) {
-            h1 { font-size: 3rem; } /* Уменьшаем заголовок */
+            h1 { font-size: 3rem; }
             h2 { font-size: 2.2rem; margin: 30px 0; }
             
-            .hero { min-height: auto; padding: 100px 20px 50px 20px; } /* Отступ сверху под кнопку темы */
+            .hero { min-height: auto; padding: 100px 20px 50px 20px; }
             .hero p { font-size: 1.4rem; }
 
-            /* Фото сверху, текст снизу */
             .bio-container { flex-direction: column; gap: 20px; }
             .my-photo { max-width: 100%; box-shadow: 5px 5px 0px var(--color-accent); }
             .bio-text h3 { text-align: center; }
 
-            /* Кнопки на всю ширину */
             .btn { width: 100%; text-align: center; box-sizing: border-box; }
             
-            /* Карточки компактнее */
             .grid { grid-template-columns: 1fr; gap: 20px; }
         }
     </style>
